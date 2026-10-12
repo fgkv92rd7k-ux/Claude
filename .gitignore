@@ -1,0 +1,4 @@
+node_modules
+test/shot-*.png
+test/diag.mjs
+dist/

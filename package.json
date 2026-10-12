@@ -1,0 +1,14 @@
+{
+  "name": "monstrosity-bowl-film-room",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Monstrosity Bowl, slimmed, with the Film Room: a study layer that quizzes you between drives from decks you paste in.",
+  "type": "module",
+  "scripts": {
+    "serve": "npx --yes http-server -p 8080 -c-1 .",
+    "build:decks": "node tools/build-decks.mjs",
+    "build:page": "node tools/publish-prep.mjs",
+    "test": "node test/smoke.mjs"
+  },
+  "devDependencies": { "playwright": "^1.56.1" }
+}
