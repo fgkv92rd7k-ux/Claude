@@ -237,10 +237,11 @@ function setupKick(rec, kick) {
 }
 
 // ===== sim part 2: movement, ball carrier, quarterback, passing, blocking =====
-function steer(p, dx, dy, mul, dt) {
+// acc: yards/s² toward the wanted velocity. AI players use 26; the player you steer gets 38 so the stick answers at once.
+function steer(p, dx, dy, mul, dt, acc) {
   const m = Math.hypot(dx, dy); let tx = 0, ty = 0;
   if (m > 0.001 && mul > 0) { const s = p.ms * mul; tx = (dx / m) * s; ty = (dy / m) * s; }
-  const a = 26 * dt, ex = tx - p.vx, ey = ty - p.vy, em = Math.hypot(ex, ey);
+  const a = (acc || 26) * dt, ex = tx - p.vx, ey = ty - p.vy, em = Math.hypot(ex, ey);
   if (em <= a) { p.vx = tx; p.vy = ty; } else { p.vx += (ex / em) * a; p.vy += (ey / em) * a; }
 }
 function goTo(p, x, y, mul, dt) {
@@ -291,7 +292,7 @@ function carrierStep(pl, p, dt, inp) {
   const wantJ = inp ? inp.a : near < 2.0 && rnd() < dt * TUNE.aiJuke * (p.r.skl / 99);
   if (wantJ && p.jcd <= 0) { p.juke = 0.3; p.jcd = 1.8; p.vx += (dx >= 0 ? 1 : -1) * 3.4; pl.ev.push({ e: 'juke' }); }
   if (p.slow > 0) mul *= p.stumble > 0 ? 0.6 : 0.72;
-  steer(p, dx, dy, mul, dt);
+  steer(p, dx, dy, mul, dt, manual ? 38 : 26);
 }
 
 function ballSpeed(r) { return 15 + r.pow * 0.09; }
@@ -380,7 +381,7 @@ function qbStep(pl, qb, dt, inp) {
   if (qb.y > pl.los + 0.4) { pl.scr = true; pl.run = true; pl.pt = Math.min(pl.pt, pl.t); return; }
   if (!inp) return cpuQB(pl, qb, dt);
   if (idle(inp)) { if (pl.t < 0.9) goTo(qb, pl.bx, pl.ai.drop + 2.2, 0.8, dt); else steer(qb, 0, 0, 0, dt); }
-  else steer(qb, inp.mx, inp.my, 0.88, dt);
+  else steer(qb, inp.mx, inp.my, 0.88, dt, 38);
   let rec = null;
   if (inp.num != null && pl.order[inp.num]) rec = pl.order[inp.num];
   if (inp.tap) { let bd = 8; for (const r of pl.order) { const dd = Math.hypot(r.x - inp.tap.x, r.y - inp.tap.y); if (dd < bd) { bd = dd; rec = r; } } }
@@ -502,7 +503,7 @@ function defenseStep(pl, dt, inp) {
     if (d.stun > 0) { steer(d, 0, 0, 0, dt); continue; }
     if (d.eng >= 0 || d.dive > 0) continue;
     if (c === d) { carrierStep(pl, d, dt, ui); continue; }
-    if (ui && !idle(ui)) { steer(d, ui.mx, ui.my, 1, dt); continue; }
+    if (ui && !idle(ui)) { steer(d, ui.mx, ui.my, 1, dt, 38); continue; }
     if (pl.ret) { if (c) goTo(d, c.x + (d.x < c.x ? -3 : 3), c.y - 3, 0.9, dt); continue; }
     aiDef(pl, d, dt, c, qb);
   }

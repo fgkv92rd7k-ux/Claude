@@ -17,7 +17,7 @@ const r3col = (c) => new THREE.Color(c).convertSRGBToLinear(); // material colou
 function r3init(canvas) {
   const T = window.THREE; if (!T) return false;
   let rn; try { rn = new T.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' }); } catch (e) { return false; }
-  rn.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); rn.outputEncoding = T.sRGBEncoding;
+  rn.setPixelRatio(Math.min(window.devicePixelRatio || 1, DPR_STEPS[0])); rn.outputEncoding = T.sRGBEncoding;
   const scene = new T.Scene(); scene.fog = new T.Fog(r3col(0xf3cda6), 170, 560);
   Object.assign(R3, { T, rn, scene, camera: new T.PerspectiveCamera(55, 1, 1, 1500), ok: true, m4: new T.Matrix4(), col: new T.Color() });
   r3sky(); r3field(); r3stadium(); r3actors(); r3fx();
@@ -61,29 +61,34 @@ function r3sky() {
 
 function r3field() {
   const { T, scene, rn } = R3;
-  R3.fcv = document.createElement('canvas'); R3.fcv.width = 1024; R3.fcv.height = 2048;
-  R3.ftex = new T.CanvasTexture(R3.fcv); R3.ftex.encoding = T.sRGBEncoding; R3.ftex.anisotropy = Math.min(8, rn.capabilities.getMaxAnisotropy());
+  // Grass, numbers, end zones and logos live in a texture: 2048×4096 on high-DPI screens so the numbers stay sharp, else 1024×2048.
+  const big = (window.devicePixelRatio || 1) >= 2 && rn.capabilities.maxTextureSize >= 4096;
+  R3.fcv = document.createElement('canvas'); R3.fcv.width = big ? 2048 : 1024; R3.fcv.height = big ? 4096 : 2048;
+  R3.ftex = new T.CanvasTexture(R3.fcv); R3.ftex.encoding = T.sRGBEncoding; R3.ftex.anisotropy = rn.capabilities.getMaxAnisotropy();
   const f = new T.Mesh(new T.PlaneGeometry(70, 136), new T.MeshLambertMaterial({ map: R3.ftex })); f.rotation.x = -Math.PI / 2; scene.add(f);
+  // The painted lines are geometry, not texels: one merged mesh of thin quads that the multisampling keeps crisp at any distance.
+  const Q = [], quad = (x0, y0, x1, y1) => { const g = new T.PlaneGeometry(x1 - x0, y1 - y0); g.rotateX(-Math.PI / 2); g.translate(W3((x0 + x1) / 2), 0, Z3((y0 + y1) / 2)); Q.push(g); };
+  quad(-1.1, -11.1, 0, 111.1); quad(FW, -11.1, FW + 1.1, 111.1); quad(-1.1, 110, FW + 1.1, 111.1); quad(-1.1, -11.1, FW + 1.1, -10); // boundary
+  quad(0, -0.16, FW, 0.16); quad(0, 99.84, FW, 100.16); // goal lines
+  for (let y = 1; y < 100; y++) {
+    if (y % 5 === 0) quad(0, y - 0.07, FW, y + 0.07);
+    else for (const hx of [23.58, 29.08, 0.4, FW - 1.05]) quad(hx, y - 0.05, hx + 0.67, y + 0.05);
+  }
+  const lines = new T.Mesh(r3merge(Q), new T.MeshBasicMaterial({ color: 0xf4f8f2, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
+  lines.position.y = 0.012; scene.add(lines);
   const line = (col, op) => { const m = new T.Mesh(new T.PlaneGeometry(FW, 0.45), new T.MeshBasicMaterial({ color: col, transparent: true, opacity: op, depthWrite: false })); m.rotation.x = -Math.PI / 2; m.position.y = 0.03; m.visible = false; scene.add(m); return m; };
   R3.los = line(0x2f7bff, 0.8); R3.fd = line(0xffc42e, 0.95);
 }
-// Paint lines, numbers, end zones and logo into the field texture. off = team attacking up-screen.
+// Paint grass, numbers, end zones and logo into the field texture. off = team attacking up-screen.
 function r3paint(off, def) {
-  const g = R3.fcv.getContext('2d'), sx = 1024 / 70, sy = 2048 / 136, X = (x) => (x + 8.335) * sx, Y = (y) => (118 - y) * sy;
+  const Wt = R3.fcv.width, Ht = R3.fcv.height, g = R3.fcv.getContext('2d'), sx = Wt / 70, sy = Ht / 136, X = (x) => (x + 8.335) * sx, Y = (y) => (118 - y) * sy;
   const rect = (x0, y0, x1, y1) => g.fillRect(X(x0), Y(y1), (x1 - x0) * sx, (y1 - y0) * sy);
-  g.fillStyle = '#27603a'; g.fillRect(0, 0, 1024, 2048);
+  g.fillStyle = '#27603a'; g.fillRect(0, 0, Wt, Ht);
   for (let y = 0; y < 100; y += 5) { g.fillStyle = (y / 5) & 1 ? '#3f9f47' : '#368f3f'; rect(0, y, FW, y + 5); }
   g.fillStyle = def.col.ez; rect(0, 100, FW, 110); g.fillStyle = off.col.ez; rect(0, -10, FW, 0);
-  let s = 7; const rr = () => ((s = (s * 16807) % 2147483647) / 2147483647);
-  for (let i = 0; i < 6000; i++) { g.fillStyle = rr() < 0.5 ? 'rgba(255,255,255,.035)' : 'rgba(0,40,10,.05)'; g.fillRect(rr() * 1024, rr() * 2048, 1.5, 5 + rr() * 6); }
-  const sh = g.createRadialGradient(512, 1024, 100, 512, 1024, 1150); sh.addColorStop(0, 'rgba(255,255,220,.10)'); sh.addColorStop(1, 'rgba(0,30,20,.22)'); g.fillStyle = sh; g.fillRect(0, 0, 1024, 2048);
-  g.fillStyle = 'rgba(255,255,255,.94)';
-  rect(-1.1, -11.1, 0, 111.1); rect(FW, -11.1, FW + 1.1, 111.1); rect(-1.1, 110, FW + 1.1, 111.1); rect(-1.1, -11.1, FW + 1.1, -10);
-  rect(0, -0.16, FW, 0.16); rect(0, 99.84, FW, 100.16);
-  for (let y = 1; y < 100; y++) {
-    if (y % 5 === 0) rect(0, y - 0.07, FW, y + 0.07);
-    else for (const hx of [23.58, 29.08, 0.4, FW - 1.05]) rect(hx, y - 0.05, hx + 0.67, y + 0.05);
-  }
+  let s = 7; const rr = () => ((s = (s * 16807) % 2147483647) / 2147483647), k = Wt / 1024;
+  for (let i = 0; i < 6000 * k * k; i++) { g.fillStyle = rr() < 0.5 ? 'rgba(255,255,255,.035)' : 'rgba(0,40,10,.05)'; g.fillRect(rr() * Wt, rr() * Ht, 1.5 * k, (5 + rr() * 6) * k); }
+  const sh = g.createRadialGradient(Wt / 2, Ht / 2, 100 * k, Wt / 2, Ht / 2, 1150 * k); sh.addColorStop(0, 'rgba(255,255,220,.10)'); sh.addColorStop(1, 'rgba(0,30,20,.22)'); g.fillStyle = sh; g.fillRect(0, 0, Wt, Ht);
   g.textAlign = 'center'; g.textBaseline = 'middle';
   for (let y = 10; y <= 90; y += 10) for (const side of [-1, 1]) { // numbers read from the near sideline
     const n = String(y <= 50 ? y : 100 - y); g.save(); g.translate(X(side < 0 ? 11 : FW - 11), Y(y)); g.rotate((side * -Math.PI) / 2);
@@ -306,10 +311,10 @@ function r3camera(view, dt) {
     if (view.hero >= 0) { const p = pl.P[view.hero]; Object.assign(g, { x: W3(p.x), y: 1.8, z: Z3(p.y), d: port ? 22 : 16, pitch: 0.2, yaw: C3.yaw + dt * 0.5, fov: 50, rate: 3 }); k = 0; w = 0; }
     else if (pl.dead) hold = true;
     else if (pl.kind === 'ko' && (b.st === 'air' || !pl.live)) { g.x = W3(b.x) * 0.5; g.z = Z3(pl.live ? b.y : 62); w = 46; k = 4; }
-    else if (b.st === 'air') { const u = clamp(b.ft / b.T, 0, 1) ** 0.7; g.x = W3(b.sx + (b.tx - b.sx) * u); g.z = Z3(b.sy + (b.ty - b.sy) * u); w = 36; k = port ? 14 : 7; g.rate = 5; }
-    else if (c && (pl.run || c.side === 1)) { // ball carrier: push in and lead him
+    else if (b.st === 'air') { const u = clamp(b.ft / b.T, 0, 1) ** 0.7; g.x = W3(b.sx + (b.tx - b.sx) * u); g.z = Z3(b.sy + (b.ty - b.sy) * u); w = 36; k = port ? 14 : 7; g.rate = 6; }
+    else if (c && (pl.run || c.side === 1)) { // ball carrier: push in and lead him, broadcast style
       const dir = c.side === 0 ? 1 : -1; g.x = W3(c.x + clamp(c.vx, -4, 4) * 0.6); g.z = Z3(c.y + dir * 2); w = port ? 25 : 34; k = dir > 0 ? (port ? 13 : 7) : -3;
-      g.pitch = port ? 0.64 : 0.42; g.yaw = clamp(c.vx * 0.012, -0.1, 0.1); g.rate = 5; if (view.turbo) g.fov += 7;
+      g.pitch = port ? 0.64 : 0.42; g.yaw = clamp(c.vx * 0.012, -0.1, 0.1); g.rate = 6.5; if (view.turbo) g.fov += 7;
     } else { g.x = W3(pl.bx); g.z = Z3(pl.los); w = 39; if (view.sheet) k = port ? -9 : 0; } // play-call sheet is up: lift the formation into the open part of the screen
   } else if (view.G) { g.x = W3(view.G.bx); g.z = Z3(view.G.ydl); w = 50; g.pitch = port ? 0.82 : 0.6; k = 8; }
   if (hold && C3.g) g = C3.g;
@@ -380,8 +385,10 @@ function r3fxStep(dt) {
 }
 
 function r3resize(w, h) { if (!R3.ok) return; R3.W = w; R3.H = h; R3.rn.setSize(w, h, false); }
-// Quality: 2 = full (device pixels up to 2×), 1 = 1.75×, 0 = 1.5×. Never lower: a blurry picture is worse than a dropped frame.
-function r3quality(l) { const dpr = window.devicePixelRatio || 1; R3.rn.setPixelRatio(Math.min(dpr, l === 2 ? 2 : l === 1 ? 1.75 : 1.5)); R3.rn.setSize(R3.W, R3.H, false); }
+// Quality levels are pixel-ratio caps: full device resolution first (up to 3×), easing down only if the frame rate cannot hold,
+// and never below 1.5×: a blurry picture is worse than a dropped frame.
+const DPR_STEPS = [3, 2.25, 1.75, 1.5];
+function r3quality(l) { const dpr = window.devicePixelRatio || 1; R3.rn.setPixelRatio(Math.min(dpr, DPR_STEPS[clamp(DPR_STEPS.length - 1 - l, 0, DPR_STEPS.length - 1)])); R3.rn.setSize(R3.W, R3.H, false); }
 // view: { pl, G, off, def, los, fd, t, userOn, kb, kick, title, hero, cut, paused, flag, sheet, turbo }
 function r3frame(view, dt) {
   const key = view.off.id + '>' + view.def.id; if (key !== R3.pair) { R3.pair = key; r3paint(view.off, view.def); }

@@ -301,12 +301,12 @@ function render(dt) {
     const [x, y, ok] = r3project(p.x, p.y, 4.4); el.hidden = !ok; el.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`; el.classList.toggle('sel', i === pl.sel);
   }
 }
-let qLvl = 2, qT = 0, ema = 0.016;
+let qLvl = 3, qT = 0, ema = 0.016;
 const SAFE = { title: 1, call: 1, post: 1, final: 1 }; // phases where a quiz can interrupt without spoiling a play
 function frame(now) {
   const raw = (now - last) / 1000 || 0, dt = Math.min(0.05, raw); last = now; T += dt; if (slowT > 0) slowT -= dt;
-  ema += (Math.min(raw, 0.25) - ema) * 0.05; qT += raw; // ease the pixel ratio (never below 1.5×) if the device cannot hold ~30 fps
-  if (CAN3 && qLvl > 0 && qT > 2.5 && ema > 0.034 && !(window.__mb && window.__mb.q != null)) { qLvl--; qT = 0; r3quality(qLvl); }
+  ema += (Math.min(raw, 0.25) - ema) * 0.05; qT += raw; // ease the pixel ratio one step (never below 1.5×) if the device cannot hold ~40 fps
+  if (CAN3 && qLvl > 0 && qT > 2.5 && ema > 0.025 && !(window.__mb && window.__mb.q != null)) { qLvl--; qT = 0; r3quality(qLvl); }
   const hold = paused || Study.open;
   if (!hold && G) { const n = (window.__mb && window.__mb.speed) || 1; for (let k = 0; k < n && !paused && !Study.open && G; k++) update(dt); } else clearEdges();
   Study.tick(!!SAFE[ph] || paused);
