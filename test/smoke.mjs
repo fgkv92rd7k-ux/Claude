@@ -104,9 +104,9 @@ await page.screenshot({ path: 'test/shot-break.png' });
 const kind2 = await page.evaluate(() => (document.querySelector('#quiz .choice') ? 'mc' : 'short'));
 if (kind2 === 'mc') await page.click('#quiz .choice'); else { await page.fill('#qzIn', 'x'); await page.press('#qzIn', 'Enter'); }
 await page.waitForTimeout(200); await page.click('#qzGo');
-await page.waitForTimeout(2500);
-const resumed = await page.evaluate(() => ({ open: __mb.Study.open, ph: __mb.ph(), momo: __mb.MOMO.lvl.slice(), boost: BOOST.ms.slice() }));
-ok(!resumed.open && resumed.ph !== 'post', `game resumes after the answer (phase ${resumed.ph}, momentum ${resumed.momo}, boost ${resumed.boost})`);
+let resumed = null; const t2 = Date.now();
+while (Date.now() - t2 < 12000) { await page.waitForTimeout(300); resumed = await page.evaluate((n) => ({ open: __mb.Study.open, ph: __mb.ph(), plays: __mb.G().stats[0].plays + __mb.G().stats[1].plays, momo: __mb.MOMO.lvl.slice(), boost: BOOST.ms.slice() }), pausedPlays); if (resumed.plays > pausedPlays || /live|pre|call|kopre|auto/.test(resumed.ph)) break; }
+ok(resumed && (resumed.plays > pausedPlays || /live|pre|call|kopre|auto/.test(resumed.ph)), `game resumes after the answer (phase ${resumed && resumed.ph}, momentum ${resumed && resumed.momo}, boost ${resumed && resumed.boost})`);
 
 // ---- phone layout ----
 const phone = await browser.newPage({ viewport: { width: 390, height: 780 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });

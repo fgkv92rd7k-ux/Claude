@@ -36,7 +36,7 @@ The five scripts are classic scripts that share one global lexical scope, loaded
 
 | | Original | Now |
 | --- | --- | --- |
-| Draw calls per frame | ~500 (22 figures × ~22 meshes, 48 bench meshes, ~100 stadium boxes) | ~38 (one InstancedMesh per body part, merged stadium, instanced benches) |
+| Draw calls per frame | ~700 plus a shadow pass (22 figures × 22 meshes, 48 bench meshes, ~120 stadium pieces) | ~38 (one InstancedMesh per body part, merged stadium, instanced benches) |
 | Shadows | 2048² PCF-soft shadow map, every part a caster | Flat blob shadows, one instanced draw |
 | Resolution | Dropped to 1× device pixels under load (blurry) | Never below 1.5×; antialias kept |
 | Renderers | 3D plus a retro 2D pixel renderer and glyph font | 3D only |
