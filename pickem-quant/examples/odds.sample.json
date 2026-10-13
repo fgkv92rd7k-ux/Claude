@@ -1,0 +1,465 @@
+{
+ "_doc": "Example sportsbook quotes (American odds, both sides). Illustrative, not real. Timestamps feed the staleness filter; the 'stalebook' quote is a day old and must be dropped.",
+ "quotes": [
+  {
+   "player": "Josh Allen",
+   "market": "nfl_pass_yds",
+   "line": 259.5,
+   "book": "pinnacle",
+   "price_over": -108,
+   "price_under": -112,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Josh Allen",
+   "market": "nfl_pass_yds",
+   "line": 274.5,
+   "book": "pinnacle",
+   "price_over": 135,
+   "price_under": -165,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Josh Allen",
+   "market": "nfl_pass_yds",
+   "line": 244.5,
+   "book": "pinnacle",
+   "price_over": -150,
+   "price_under": 120,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Josh Allen",
+   "market": "nfl_pass_yds",
+   "line": 257.5,
+   "book": "draftkings",
+   "price_over": -115,
+   "price_under": -105,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Josh Allen",
+   "market": "nfl_pass_yds",
+   "line": 258.5,
+   "book": "fanduel",
+   "price_over": -114,
+   "price_under": -106,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Josh Allen",
+   "market": "nfl_pass_tds",
+   "line": 1.5,
+   "book": "pinnacle",
+   "price_over": -150,
+   "price_under": 122,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Josh Allen",
+   "market": "nfl_pass_tds",
+   "line": 1.5,
+   "book": "draftkings",
+   "price_over": -155,
+   "price_under": 125,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Khalil Shakir",
+   "market": "nfl_rec_yds",
+   "line": 56.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Khalil Shakir",
+   "market": "nfl_rec_yds",
+   "line": 55.5,
+   "book": "draftkings",
+   "price_over": -115,
+   "price_under": -105,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "James Cook",
+   "market": "nfl_rush_yds",
+   "line": 69.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "James Cook",
+   "market": "nfl_rush_yds",
+   "line": 68.5,
+   "book": "fanduel",
+   "price_over": -112,
+   "price_under": -108,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Patrick Mahomes",
+   "market": "nfl_pass_yds",
+   "line": 262.5,
+   "book": "pinnacle",
+   "price_over": -112,
+   "price_under": -108,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Patrick Mahomes",
+   "market": "nfl_pass_yds",
+   "line": 261.5,
+   "book": "draftkings",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Travis Kelce",
+   "market": "nfl_receptions",
+   "line": 5.5,
+   "book": "pinnacle",
+   "price_over": -128,
+   "price_under": 104,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Travis Kelce",
+   "market": "nfl_receptions",
+   "line": 5.5,
+   "book": "draftkings",
+   "price_over": -130,
+   "price_under": 100,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Rashee Rice",
+   "market": "nfl_rec_yds",
+   "line": 64.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Rashee Rice",
+   "market": "nfl_rec_yds",
+   "line": 63.5,
+   "book": "fanduel",
+   "price_over": -112,
+   "price_under": -108,
+   "game_id": "BUF@KC",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jalen Hurts",
+   "market": "nfl_pass_tds",
+   "line": 1.5,
+   "book": "pinnacle",
+   "price_over": -135,
+   "price_under": 110,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jalen Hurts",
+   "market": "nfl_pass_tds",
+   "line": 1.5,
+   "book": "draftkings",
+   "price_over": -140,
+   "price_under": 115,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Saquon Barkley",
+   "market": "nfl_rush_yds",
+   "line": 84.5,
+   "book": "pinnacle",
+   "price_over": -115,
+   "price_under": -105,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Saquon Barkley",
+   "market": "nfl_rush_yds",
+   "line": 83.5,
+   "book": "draftkings",
+   "price_over": -115,
+   "price_under": -105,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "A.J. Brown",
+   "market": "nfl_rec_yds",
+   "line": 75.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "A.J. Brown",
+   "market": "nfl_rec_yds",
+   "line": 74.5,
+   "book": "fanduel",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Malik Nabers",
+   "market": "nfl_receptions",
+   "line": 6.5,
+   "book": "pinnacle",
+   "price_over": -125,
+   "price_under": 100,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Malik Nabers",
+   "market": "nfl_receptions",
+   "line": 6.5,
+   "book": "draftkings",
+   "price_over": -120,
+   "price_under": -100,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "DeVonta Smith",
+   "market": "nfl_rec_yds",
+   "line": 55.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "PHI@NYG",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Dak Prescott",
+   "market": "nfl_pass_yds",
+   "line": 250.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Dak Prescott",
+   "market": "nfl_pass_yds",
+   "line": 249.5,
+   "book": "draftkings",
+   "price_over": -112,
+   "price_under": -108,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "CeeDee Lamb",
+   "market": "nfl_rec_yds",
+   "line": 84.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "CeeDee Lamb",
+   "market": "nfl_rec_yds",
+   "line": 83.5,
+   "book": "fanduel",
+   "price_over": -114,
+   "price_under": -106,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Brock Purdy",
+   "market": "nfl_pass_yds",
+   "line": 245.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Brock Purdy",
+   "market": "nfl_pass_yds",
+   "line": 244.5,
+   "book": "draftkings",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Christian McCaffrey",
+   "market": "nfl_rush_yds",
+   "line": 71.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Christian McCaffrey",
+   "market": "nfl_rush_yds",
+   "line": 70.5,
+   "book": "draftkings",
+   "price_over": -115,
+   "price_under": -105,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "George Kittle",
+   "market": "nfl_rec_yds",
+   "line": 58.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DAL@SF",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jared Goff",
+   "market": "nfl_pass_yds",
+   "line": 268.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jared Goff",
+   "market": "nfl_pass_yds",
+   "line": 267.5,
+   "book": "draftkings",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Amon-Ra St. Brown",
+   "market": "nfl_receptions",
+   "line": 8.5,
+   "book": "pinnacle",
+   "price_over": -105,
+   "price_under": -115,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jahmyr Gibbs",
+   "market": "nfl_rush_yds",
+   "line": 69.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jahmyr Gibbs",
+   "market": "nfl_rush_yds",
+   "line": 68.5,
+   "book": "fanduel",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jordan Love",
+   "market": "nfl_pass_yds",
+   "line": 244.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jordan Love",
+   "market": "nfl_pass_yds",
+   "line": 243.5,
+   "book": "draftkings",
+   "price_over": -112,
+   "price_under": -108,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Josh Jacobs",
+   "market": "nfl_rush_yds",
+   "line": 66.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Josh Jacobs",
+   "market": "nfl_rush_yds",
+   "line": 65.5,
+   "book": "draftkings",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jayden Reed",
+   "market": "nfl_rec_yds",
+   "line": 49.5,
+   "book": "pinnacle",
+   "price_over": -110,
+   "price_under": -110,
+   "game_id": "DET@GB",
+   "ts": "2026-10-18T15:40:00Z"
+  },
+  {
+   "player": "Jayden Reed",
+   "market": "nfl_rec_yds",
+   "line": 49.5,
+   "book": "stalebook",
+   "price_over": -200,
+   "price_under": 160,
+   "game_id": "DET@GB",
+   "ts": "2026-10-17T15:40:00Z"
+  }
+ ]
+}

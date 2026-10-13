@@ -1,0 +1,56 @@
+{
+  "_doc": "Default engine configuration. Money values are USD. Edit bankrolls to match the app before every run.",
+  "bankrolls": {
+    "cash":  {"balance": 100.0, "kind": "cash"},
+    "promo": {"balance": 125.0, "kind": "promo", "label": "Betr Bucks / promo balance",
+              "rules": {"mode": "stake_not_returned", "expires": null, "note": "Betr Bucks: the stake is NOT returned on a win; cash credited = (multiplier - 1) x stake, i.e. one multiplier lower. Not withdrawable; winnings are. Expire 30 days after issue. If your balance is literally 'Betr Cash' (sweeps currency) it cannot be used on Picks at all; set mode to 'cash' if the app returns your stake."}}
+  },
+  "payout_table": "config/payouts.betr.json",
+  "sigma_priors": "config/sigma_priors.json",
+  "correlation_priors": "config/correlation_priors.json",
+  "pricing": {
+    "devig_method": "power",
+    "book_weights": {"pinnacle": 3.0, "circa": 2.5, "betonline": 1.5, "bookmaker": 1.5, "draftkings": 1.0, "fanduel": 1.0, "caesars": 0.8, "betmgm": 0.8, "default": 0.7},
+    "max_quote_age_minutes": 90,
+    "min_books": 1,
+    "shrink_to_half": 0.10
+  },
+  "legs": {
+    "min_edge": 0.0,
+    "min_leg_prob": 0.52,
+    "max_legs_considered": 24,
+    "exclude_markets": [],
+    "require_both_sides_quoted": true
+  },
+  "entries": {
+    "sizes": [2, 3, 4, 5, 6],
+    "modes": ["perfect", "flex"],
+    "beam_width": 40,
+    "top_k_legs": 14,
+    "max_candidates": 60,
+    "max_per_player": 1,
+    "min_distinct_games": 2,
+    "min_ev_cash": 0.0
+  },
+  "simulation": {"scenarios": 40000, "seed": 7},
+  "portfolio": {
+    "objective": "kelly",
+    "risk_aversion_kelly_units": 3.0,
+    "promo_risk_aversion_kelly_units": 1.0,
+    "kelly_fraction": 0.33,
+    "cash": {"slate_budget_pct": 0.25, "max_stake_pct_of_budget": 0.40, "max_leg_exposure_pct_of_budget": 0.60, "max_entries": 8},
+    "promo": {"slate_budget_pct": 0.20, "max_stake_pct_of_budget": 0.50, "max_leg_exposure_pct_of_budget": 0.75, "max_entries": 6},
+    "min_stake": 1.0,
+    "min_stake_round_up_threshold": 0.6,
+    "stake_step": 0.5
+  },
+  "risk": {
+    "stop_loss_drawdown_pct": 0.40,
+    "clv_kill_switch_window": 150,
+    "clv_kill_switch_min_logit": -0.01,
+    "max_slates_per_day": 2
+  },
+  "overlay": {"enabled": false, "max_abs_logit_shift": 0.25},
+  "ledger_path": "ledger.jsonl",
+  "state_path": "state.json"
+}

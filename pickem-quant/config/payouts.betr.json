@@ -1,0 +1,29 @@
+{
+  "_source": "Betr Picks public payout tables as of Oct 2026 (help.betr.app Flex Play Breakdown; Oct-2026 promo pages). Numbers that could not be confirmed from two sources are marked in _verify. ALWAYS confirm against the multiplier shown on the entry screen before submitting; the app's number wins.",
+  "_verify": [
+    "6-pick perfect: 40x on the newest page, 35x on an older comparison. Default 40.",
+    "4-pick flex full hit: 5x on the newest page, 6x on SportsLine. Default 5.",
+    "7-pick and 8-pick flex partial tiers were not published in any source found; they are left out, so the engine treats a miss on those as 0x (conservative).",
+    "9/10-pick tiers not included; add them from the app if you want them (10-pick flex was quoted at 200x perfect)."
+  ],
+  "min_entry": 1.0,
+  "max_entry": 1000.0,
+  "stake_step": 0.5,
+  "perfect": {
+    "2": 3.0,
+    "3": 6.0,
+    "4": 10.0,
+    "5": 20.0,
+    "6": 40.0,
+    "7": 80.0,
+    "8": 100.0
+  },
+  "flex": {
+    "3": {"3": 2.25, "2": 1.25},
+    "4": {"4": 5.0, "3": 1.5},
+    "5": {"5": 10.0, "4": 2.0, "3": 0.4},
+    "6": {"6": 20.0, "5": 1.5, "4": 1.0},
+    "7": {"7": 30.0},
+    "8": {"8": 50.0}
+  }
+}

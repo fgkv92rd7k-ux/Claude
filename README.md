@@ -52,3 +52,9 @@ npm run build:page    # dist/page.html, the body-only shape the claude.ai Artifa
 ```
 
 `npm test` needs Playwright and a Chromium; set `THREE_LOCAL=/path/to/three.min.js` on machines that cannot reach the CDN.
+
+## Also in this repo: `pickem-quant/`
+
+A separate, self-contained Python project: a quantitative pick'em DFS engine (devigged sportsbook consensus,
+copula-correlated Monte Carlo, scenario Kelly / MVO sizing across a cash and a promo bankroll, CLV ledger)
+with a model-agnostic operating protocol. See `pickem-quant/README.md` and `pickem-quant/AGENT_PROTOCOL.md`.

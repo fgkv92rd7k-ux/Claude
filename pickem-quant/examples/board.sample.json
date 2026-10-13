@@ -1,0 +1,259 @@
+{
+ "slate_id": "nfl-wk7-2026-10-18",
+ "_doc": "Example Betr-style board. Lines are illustrative, not real. pick_type/multiplier_mod describe app-specific boosted lines.",
+ "items": [
+  {
+   "player": "Josh Allen",
+   "team": "BUF",
+   "opponent": "KC",
+   "game_id": "BUF@KC",
+   "market": "nfl_pass_yds",
+   "line": 249.5,
+   "start_time": "2026-10-18T20:25:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Josh Allen",
+   "team": "BUF",
+   "opponent": "KC",
+   "game_id": "BUF@KC",
+   "market": "nfl_pass_tds",
+   "line": 1.5,
+   "start_time": "2026-10-18T20:25:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Khalil Shakir",
+   "team": "BUF",
+   "opponent": "KC",
+   "game_id": "BUF@KC",
+   "market": "nfl_rec_yds",
+   "line": 49.5,
+   "start_time": "2026-10-18T20:25:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "James Cook",
+   "team": "BUF",
+   "opponent": "KC",
+   "game_id": "BUF@KC",
+   "market": "nfl_rush_yds",
+   "line": 64.5,
+   "start_time": "2026-10-18T20:25:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Patrick Mahomes",
+   "team": "KC",
+   "opponent": "BUF",
+   "game_id": "BUF@KC",
+   "market": "nfl_pass_yds",
+   "line": 265.5,
+   "start_time": "2026-10-18T20:25:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Travis Kelce",
+   "team": "KC",
+   "opponent": "BUF",
+   "game_id": "BUF@KC",
+   "market": "nfl_receptions",
+   "line": 5.5,
+   "start_time": "2026-10-18T20:25:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Rashee Rice",
+   "team": "KC",
+   "opponent": "BUF",
+   "game_id": "BUF@KC",
+   "market": "nfl_rec_yds",
+   "line": 68.5,
+   "start_time": "2026-10-18T20:25:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Jalen Hurts",
+   "team": "PHI",
+   "opponent": "NYG",
+   "game_id": "PHI@NYG",
+   "market": "nfl_pass_tds",
+   "line": 1.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Saquon Barkley",
+   "team": "PHI",
+   "opponent": "NYG",
+   "game_id": "PHI@NYG",
+   "market": "nfl_rush_yds",
+   "line": 88.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "A.J. Brown",
+   "team": "PHI",
+   "opponent": "NYG",
+   "game_id": "PHI@NYG",
+   "market": "nfl_rec_yds",
+   "line": 70.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Malik Nabers",
+   "team": "NYG",
+   "opponent": "PHI",
+   "game_id": "PHI@NYG",
+   "market": "nfl_receptions",
+   "line": 6.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "DeVonta Smith",
+   "team": "PHI",
+   "opponent": "NYG",
+   "game_id": "PHI@NYG",
+   "market": "nfl_rec_yds",
+   "line": 55.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Dak Prescott",
+   "team": "DAL",
+   "opponent": "SF",
+   "game_id": "DAL@SF",
+   "market": "nfl_pass_yds",
+   "line": 255.5,
+   "start_time": "2026-10-19T00:20:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "CeeDee Lamb",
+   "team": "DAL",
+   "opponent": "SF",
+   "game_id": "DAL@SF",
+   "market": "nfl_rec_yds",
+   "line": 77.5,
+   "start_time": "2026-10-19T00:20:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Brock Purdy",
+   "team": "SF",
+   "opponent": "DAL",
+   "game_id": "DAL@SF",
+   "market": "nfl_pass_yds",
+   "line": 240.5,
+   "start_time": "2026-10-19T00:20:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Christian McCaffrey",
+   "team": "SF",
+   "opponent": "DAL",
+   "game_id": "DAL@SF",
+   "market": "nfl_rush_yds",
+   "line": 77.5,
+   "start_time": "2026-10-19T00:20:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "George Kittle",
+   "team": "SF",
+   "opponent": "DAL",
+   "game_id": "DAL@SF",
+   "market": "nfl_rec_yds",
+   "line": 58.5,
+   "start_time": "2026-10-19T00:20:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Jared Goff",
+   "team": "DET",
+   "opponent": "GB",
+   "game_id": "DET@GB",
+   "market": "nfl_pass_yds",
+   "line": 257.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Amon-Ra St. Brown",
+   "team": "DET",
+   "opponent": "GB",
+   "game_id": "DET@GB",
+   "market": "nfl_receptions",
+   "line": 7.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Jahmyr Gibbs",
+   "team": "DET",
+   "opponent": "GB",
+   "game_id": "DET@GB",
+   "market": "nfl_rush_yds",
+   "line": 72.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Jordan Love",
+   "team": "GB",
+   "opponent": "DET",
+   "game_id": "DET@GB",
+   "market": "nfl_pass_yds",
+   "line": 238.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Josh Jacobs",
+   "team": "GB",
+   "opponent": "DET",
+   "game_id": "DET@GB",
+   "market": "nfl_rush_yds",
+   "line": 72.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "standard",
+   "multiplier_mod": 1.0
+  },
+  {
+   "player": "Jayden Reed",
+   "team": "GB",
+   "opponent": "DET",
+   "game_id": "DET@GB",
+   "market": "nfl_rec_yds",
+   "line": 49.5,
+   "start_time": "2026-10-18T17:00:00Z",
+   "pick_type": "boost",
+   "multiplier_mod": 1.1
+  }
+ ]
+}
